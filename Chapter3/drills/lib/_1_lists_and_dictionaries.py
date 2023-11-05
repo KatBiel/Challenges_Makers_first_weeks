@@ -1,4 +1,4 @@
-# == INSTRUCTIONS ==
+# == INSTRUCTIONS ==test
 #
 # In these exercises you will recap basic dictionary and list operations, then
 # go deeper on both topics.
