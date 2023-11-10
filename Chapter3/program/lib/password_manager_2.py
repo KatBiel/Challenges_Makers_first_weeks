@@ -67,6 +67,76 @@
 
 # == YOUR CODE ==
 
+# self.passwords = [
+# { 'service': 'dgd', 'password': 'sdvg', 'added_on': 'date'}
+# { 'service': 'dgd', 'password': 'sdvg', 'added_on': 'date'}
+# ]
+# self.passwords[1]['service']
+
+
+# {
+# 'service' : {'password': 'sdvg', 'added_on': 'date'},
+#  'service': {'password': 'sdvg', 'added_on': 'date'}
+# }
+
+
+
+
 from datetime import datetime
 class PasswordManager2():
-    pass
+    def __init__(self):
+        self.passwords = []
+
+    def add(self, service, password):
+        for entry in self.passwords:
+            if password == entry['password'] or service == entry['service']:
+                return
+            
+        if len(password) >= 8:
+            if any(char in password for char in '!@$%&'):
+                new_entry = {}
+                new_entry['service'] = service
+                new_entry['password'] = password
+                new_entry['added_on'] = datetime.now()
+                self.passwords.append(new_entry)
+
+    def remove(self, service):
+        for entry in self.passwords:
+            if service == entry['service']:
+                self.passwords.remove(entry)
+
+    def is_valid_password(self,password):
+        special_characters = ['!', '@', '$', '%', '&']
+        special_char_present = any(char in special_characters for char in password)
+        is_lenght_valid = len(password) >= 8
+        is_unique = all(password != entry['password'] for entry in self.passwords)
+        return special_char_present and is_lenght_valid and is_unique
+
+    def update(self, service, password):
+        if self.is_valid_password(password):
+            for entry in self.passwords:
+                if entry in self.passwords:
+                    entry['service'] = service
+                    entry['password'] = password
+                    entry['added_on'] = datetime.now()
+
+
+    def list_services(self):
+        services = []
+        for entry in self.passwords:
+            services.append(entry['service'])
+        return services
+
+    def sort_services_by(self, parameter, order= 'asc'):
+        if parameter == 'service':
+            sorted_list = sorted(self.passwords, key = lambda x: x['service'], reverse = (order == 'reverse'))
+        elif parameter == 'added_on':
+            sorted_list = sorted(self.passwords, key = lambda x: x['added_on'], reverse = (order == 'reverse'))
+        return [entry['service'] for entry in sorted_list]
+
+    def get_for_service(self, service):
+        for entry in self.passwords:
+            if entry['service'] == service:
+                return entry['password']
+        return None
+    

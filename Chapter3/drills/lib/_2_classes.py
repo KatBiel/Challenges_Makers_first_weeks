@@ -63,6 +63,18 @@
 #   'Good night, Bobby!'
 #   > greeter.good_morning('Bobby')
 #   'Good morning, Bobby!'
+class Greeter():
+    def hello(self, name):
+        return f'Hello, {name}!'
+    
+    def goodbye(self, name):
+        return f'Goodbye, {name}!'
+    
+    def good_night(self, name):
+        return f'Good night, {name}!'
+    
+    def good_morning(self, name):
+        return f'Good morning, {name}!'
 
 
 
@@ -84,8 +96,15 @@
 #   > basket.add('orange')
 #   > basket.list_items()
 #   ['apple', 'banana', 'orange']
+class Basket():
+    def __init__(self):
+        self.items = []
 
+    def add(self, one):
+        self.items.append(one)
 
+    def list_items(self):
+        return self.items
 
 # Class name: Calculator
 # Purpose: perform simple calculations and track the history
@@ -119,8 +138,33 @@
 #   0.875
 #   > calculator.list_history()
 #   [3, 12, -1, 0.875]
-
-
+class Calculator():
+    def __init__(self):
+        self.calculation_history = []
+    
+    def add(self, number1, number2):
+        result = number1 + number2
+        self.calculation_history.append(result)
+        return result
+    
+    def multiply(self, number1, number2):
+        result = number1 * number2
+        self.calculation_history.append(result)
+        return result
+    
+    def subtract(self, number1, number2):
+        result = number1 - number2
+        self.calculation_history.append(result)
+        return result
+    
+    def divide(self, number1, number2):
+        result = number1/number2
+        self.calculation_history.append(result)
+        return result
+    
+    def list_history(self):
+        return self.calculation_history
+    
 
 # Class name: Cohort
 # Purpose: store a list of students
@@ -145,8 +189,19 @@
 #   [{'name' : 'Jo', 'employer' : 'NASA'}, {'name' : 'Alex', 'employer' : 'NASA'}, {'name' : 'Bobby', 'employer' : 'Google'}]
 #   > cohort.list_employed_by('NASA')
 #   [{'name' : 'Jo', 'employer' : 'NASA'}, {'name' : 'Alex', 'employer' : 'NASA'}]
+class Cohort():
+    def __init__(self):
+        self.students = []
 
+    def add_student(self, student):
+        self.students.append(student)
 
+    def list_students(self):
+        return self.students
+    
+    def list_employed_by(self, employer):
+        employed_students = [student for student in self.students if student.get('employer') == employer]
+        return employed_students
 
 # Class name: Person
 # Purpose: store a person's name, pets and addresses
@@ -181,5 +236,43 @@
 #   '10 South Street'
 #   > person.get_pets()
 #   'Alex has 3 pets: a cat called Arthur, a dog called Judith, a goldfish called Gwen'
+class Person:
+    def __init__(self, data):
+        self.name = data['name']
+        self.pets = data['pets']
+        self.addresses = data['addresses']
 
+    def get_work_address(self):
+        work_address = next((addr for addr in self.addresses if addr['name'] == 'work'))
+        return f"{work_address['building']} {work_address['street']}"
 
+    def get_home_address(self):
+        home_address = next((addr for addr in self.addresses if addr['name'] == 'home'))
+        return f"{home_address['building']} {home_address['street']}"
+
+    def get_pets(self):
+        pet_count = len(self.pets)
+        pet_descriptions = [f"a {pet['animal']} called {pet['name']}" for pet in self.pets]
+        return f"{self.name} has {pet_count} pets: {', '.join(pet_descriptions)}"
+
+# class Person:
+#     def __init__(self, data):
+#         self.name = data['name']
+#         self.pets = data['pets']
+#         self.addresses = data['addresses']
+
+#     def get_work_address(self):
+#         for address in self.addresses:
+#             if address['name'] == 'work':
+#                 return f"{address['building']} {address['street']}"
+
+#     def get_home_address(self):
+#         for address in self.addresses:
+#             if address['name'] == 'home':
+#                 return f"{address['building']} {address['street']}"
+
+#     def get_pets(self):
+#         pet_names = [pet['name'] for pet in self.pets]
+#         pet_animals = [pet['animal'] for pet in self.pets]
+#         pet_summary = ", ".join([f"a {animal} called {name}" for name, animal in zip(pet_names, pet_animals)])
+#         return f"{self.name} has {len(self.pets)} pets: {pet_summary}"

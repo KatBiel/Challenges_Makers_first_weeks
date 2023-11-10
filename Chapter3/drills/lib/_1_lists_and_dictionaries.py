@@ -20,7 +20,8 @@
 # Example:
 #   Call:    fourth_element([1, 2, 3, 4, 5])
 #   Returns: 4
-
+def fourth_element(list):
+    return list[3]
 
 
 # Method name: average
@@ -29,7 +30,8 @@
 # Example:
 #   Call:    average([3, 1, 44, 1])
 #   Returns: 12.25
-
+def average(list):
+    return sum(list) / len(list)
 
 
 # Method name: lowest_squared
@@ -38,8 +40,9 @@
 # Example:
 #   Call:    lowest_squared([5, 3, 44, 7])
 #   Returns: 9
-
-
+def lowest_squared(list):
+    list.sort()
+    return list[0]**2
 
 # Method name: highest_squared
 # Purpose: returns the highest number squared
@@ -47,7 +50,9 @@
 # Example:
 #   Call:    highest_squared([5, 3, 44, 7])
 #   Returns: 1936
-
+def highest_squared(list):
+    list.sort()
+    return list[-1]**2
 
 
 # Method name: starts_with_a
@@ -56,7 +61,12 @@
 # Example:
 #   Call:    starts_with_a(['banana', 'apple', 'orange', 'avocado'])
 #   Returns: ['apple', 'avocado']
-
+def starts_with_a(list):
+    filtered_list = []
+    for value in list:
+        if value[0] == 'a':
+            filtered_list.append(value)
+    return filtered_list
 
 
 # Method name: starts_with_a_vowel
@@ -65,6 +75,12 @@
 # Example:
 #   Call:    starts_with_a_vowel(['banana', 'apple', 'orange', 'avocado'])
 #   Returns: ['apple', 'orange', 'avocado']
+def starts_with_a_vowel(list):
+    vowel_list = []
+    for item in list:
+        if item[0] in 'aeiouAEIOU':
+            vowel_list.append(item)
+    return vowel_list
 
 
 
@@ -74,7 +90,12 @@
 # Example:
 #   Call:    reverse_each_element(['one', 'two'])
 #   Returns: ['eno', 'owt']
-
+def reverse_each_element(list):
+    reversed_list = []
+    for item in list:
+        reversed_item = item[::-1]
+        reversed_list.append(reversed_item)
+    return reversed_list
 
 
 # Method name: sort_by_last_letter
@@ -83,8 +104,13 @@
 # Example:
 #   Call:    sort_by_last_letter(['banana', 'apple', 'carrot', 'avocado'])
 #   Returns: ['banana', 'apple', 'avocado', 'carrot']
-
-
+def sort_by_last_letter(list):
+    
+    def last_letter(element):
+        return element[-1]
+    
+    sorted_list = sorted(list, key=last_letter)
+    return sorted_list
 
 # Method name: greater_than_5
 # Purpose: returns only numbers greater than 5
@@ -92,7 +118,12 @@
 # Example:
 #   Call:    greater_than_5([9, 3, 44, 7])
 #   Returns: [9, 44, 7]
-
+def greater_than_5(list):
+    new_list = []
+    for item in list:
+        if item > 5:
+            new_list.append(item)
+    return new_list
 
 
 # Method name: greater_than
@@ -101,7 +132,12 @@
 # Example:
 #   Call:    greater_than([9, 3, 6, 44, 7, 7], 6)
 #   Returns: [9, 44, 7, 7]
-
+def greater_than(list, number):
+    new_list = []
+    for item in list:
+        if item > number:
+            new_list.append(item)
+    return new_list
 
 
 # Method name: less_than
@@ -110,7 +146,12 @@
 # Example:
 #   Call:    less_than([9, 3, 6, 44, 1, 7, 7], 6)
 #   Returns: [3, 1]
-
+def less_than(list, number):
+    new_list = []
+    for item in list:
+        if item < number:
+            new_list.append(item)
+    return new_list
 
 
 # Method name: words_shorter_than
@@ -119,7 +160,12 @@
 # Example:
 #   Call:    words_shorter_than(['banana', 'apple', 'orange', 'nut', 'avocado'], 6)
 #   Returns: ['apple', 'nut']
-
+def words_shorter_than(list, number):
+    new_list = []
+    for item in list:
+        if len(item) < number:
+            new_list.append(item)
+    return new_list
 
 
 # Method name: all_above
@@ -130,8 +176,13 @@
 #   Returns: False
 #   Call:    all_above([9, 3, 6, 44, 1, 7, 7], 0)
 #   Returns: True
-
-
+def all_above(list, number):
+    for item in list:
+        if item <= number:
+            return False
+    return True
+# def all_above(input_list, number):
+#     return all(num > number for num in input_list)
 
 # Method name: all_below
 # Purpose: returns True if all elements are less than the number provided
@@ -141,6 +192,11 @@
 #   Returns: False
 #   Call:    all_below([9, 3, 6, 44, 1, 7, 7], 100)
 #   Returns: True
+def all_below(input_list, number):
+    for item in input_list:
+        if item >= number:
+            return False
+    return True
 
 
 
@@ -150,7 +206,11 @@
 # Example:
 #   Call:    multiply_each_by([9, 3, 6, 44, 1, 7, 7], 2)
 #   Returns: [18, 6, 12, 88, 2, 14, 14]
-
+def multiply_each_by(list, number):
+    new_list = []
+    for item in list:
+        new_list.append(item * number)
+    return new_list
 
 
 # == DICTIONARY EXERCISES ==
@@ -161,7 +221,8 @@
 # Example:
 #   Call:    values_summed({'cat': 4, 'person': 2, 'centipede': 100})
 #   Returns: 106
-
+def values_summed(dict):
+    return sum(dict.values())
 
 
 # Method name: add_key_value_pair
@@ -170,8 +231,9 @@
 # Example:
 #   Call:    add_key_value_pair({'cat': 4, 'person': 2, 'centipede': 100}, 'dog', 4)
 #   Returns: {'cat': 4, 'person': 2, 'centipede': 100, 'dog': 4}
-
-
+def add_key_value_pair(dict, a_key, a_value):
+    dict[a_key] = a_value
+    return dict
 
 # Method name: remove_key_value_pair
 # Purpose: returns the dictionary with the key and value removed
@@ -179,7 +241,10 @@
 # Example:
 #   Call:    remove_key_value_pair({'cat': 4, 'person': 2, 'centipede': 100}, 'cat')
 #   Returns: {'person': 2, 'centipede': 100}
-
+def remove_key_value_pair(dict, a_key):
+    if a_key in dict:  
+        del dict[a_key]
+    return dict
 
 
 # Method name: where_value_below
@@ -188,7 +253,12 @@
 # Example:
 #   Call:    where_value_below({'cat': 4, 'person': 2, 'centipede': 100}, 5)
 #   Returns: {'cat': 4, 'person': 2}
-
+def where_value_below(dict, number):
+    new_dict = {}
+    for key, value in dict.items():
+        if value < number:
+            new_dict[key] = value
+    return new_dict
 
 
 # Method name: where_key_starts_with
@@ -197,5 +267,10 @@
 # Example:
 #   Call:    where_key_starts_with({'cat': 4, 'person': 2, 'centipede': 100}, 'c')
 #   Returns: {'cat': 4, 'centipede': 100}
-
+def where_key_starts_with(dict, letter):
+    new_dict = {}
+    for key, value in dict.items():
+        if key[0] == letter:
+            new_dict[key] = value
+    return new_dict
 
